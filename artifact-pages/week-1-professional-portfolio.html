@@ -2,64 +2,219 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Week 1 Professional Portfolio | Rahmat Zada</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    AI and Machine Learning History Timeline | Rahmat Zada
+  </title>
 
   <link rel="stylesheet" href="../style.css">
 
   <style>
-    .artifact-detail-page {
-      padding: 40px 0 80px;
+    body {
+      background: #070c1c;
+    }
+
+    .artifact-page {
+      padding: 42px 0 90px;
+    }
+
+    .artifact-container {
+      width: min(1180px, 92%);
+      margin: auto;
     }
 
     .back-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-bottom: 28px;
       padding: 12px 20px;
       border: 1px solid #344158;
       border-radius: 999px;
-      background: #1d293b;
+      color: #ffffff;
+      background: #1a2538;
       font-weight: 800;
+      transition: 0.25s ease;
     }
 
-    .detail-card {
-      padding: 40px;
+    .back-button:hover {
+      transform: translateY(-2px);
+      border-color: #5b9df9;
     }
 
-    .detail-card h1 {
-      margin-top: 0;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.15;
+    .artifact-hero {
+      padding: 42px;
+      border: 1px solid #344158;
+      border-radius: 26px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(59, 151, 243, 0.16),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at top left,
+          rgba(139, 92, 246, 0.14),
+          transparent 34%
+        ),
+        #111a2b;
     }
 
-    .detail-label {
-      color: #8b5cf6;
+    .artifact-label {
+      margin: 0 0 14px;
+      color: #9b6cff;
+      font-size: 0.82rem;
       font-weight: 900;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
 
-    .detail-section {
-      margin-top: 30px;
+    .artifact-hero h1 {
+      max-width: 950px;
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
     }
 
-    .detail-section h2 {
-      margin-bottom: 10px;
+    .artifact-summary {
+      max-width: 900px;
+      margin: 24px 0 0;
+      color: #c9d4e5;
+      font-size: 1.12rem;
+      line-height: 1.8;
     }
 
-    .detail-section p,
-    .detail-section li {
-      color: #bcc7d8;
+    .artifact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
     }
 
-    .document-button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 22px;
+    .artifact-tag {
+      padding: 8px 13px;
+      border: 1px solid #4b4c9d;
       border-radius: 999px;
-      background: linear-gradient(135deg, #8b5cf6, #3b97f3);
-      font-weight: 800;
+      color: #d8dcff;
+      background: rgba(80, 80, 170, 0.18);
+      font-size: 0.86rem;
+      font-weight: 750;
+    }
+
+    .artifact-section {
+      margin-top: 24px;
+      padding: 28px;
+      border: 1px solid #2d3a50;
+      border-radius: 18px;
+      background: #111a2b;
+    }
+
+    .artifact-section h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+      font-size: 1.35rem;
+    }
+
+    .artifact-section p,
+    .artifact-section li {
+      color: #c5d0e0;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .artifact-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .artifact-section ul {
+      margin-bottom: 0;
+      padding-left: 23px;
+    }
+
+    .timeline-heading {
+      margin: 48px 0 18px;
+    }
+
+    .timeline-heading p {
+      margin: 0 0 10px;
+      color: #9b6cff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .timeline-heading h2 {
+      margin: 0;
+      color: white;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 25px;
+      border: 1px solid #334158;
+      border-radius: 18px;
+      background: #172235;
+    }
+
+    .timeline-year {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #5bb3ff;
+      font-size: 1.08rem;
+      font-weight: 900;
+    }
+
+    .timeline-card h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: 1.25rem;
+    }
+
+    .timeline-card p {
+      margin: 0;
+      color: #bcc8da;
+      line-height: 1.7;
+    }
+
+    .reference-list {
+      padding-left: 22px;
+    }
+
+    .reference-list li {
+      margin-bottom: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 760px) {
+      .artifact-hero {
+        padding: 28px;
+      }
+
+      .artifact-section {
+        padding: 22px;
+      }
+
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .artifact-hero h1 {
+        letter-spacing: -1px;
+      }
     }
   </style>
 </head>
@@ -67,11 +222,17 @@
 <body>
   <header class="site-header">
     <div class="header-container">
-      <a class="name-logo" href="../index.html">RAHMAT ZADA</a>
+      <a class="name-logo" href="../index.html">
+        RAHMAT ZADA
+      </a>
 
       <nav class="navigation">
         <a href="../index.html">Home</a>
-        <a href="../index.html#artifacts">Artifacts</a>
+
+        <a href="../index.html#artifacts">
+          Artifacts
+        </a>
+
         <a
           href="https://www.linkedin.com/in/rahmat-zada"
           target="_blank"
@@ -83,64 +244,317 @@
     </div>
   </header>
 
-  <main class="artifact-detail-page">
-    <div class="container">
-      <a class="back-button" href="../index.html#artifacts">
+  <main class="artifact-page">
+    <div class="artifact-container">
+      <a
+        class="back-button"
+        href="../index.html#artifacts"
+      >
         ← Back to Artifacts
       </a>
 
-      <article class="card detail-card">
-        <p class="detail-label">Artifact Details</p>
+      <section class="artifact-hero">
+        <p class="artifact-label">
+          Week 1 Artifact
+        </p>
 
-        <h1>Week 1 – Professional Portfolio</h1>
+        <h1>
+          AI and Machine Learning History Timeline
+        </h1>
 
-        <section class="detail-section">
-          <h2>Overview</h2>
+        <p class="artifact-summary">
+          A professional portfolio artifact presenting major milestones
+          in the development of artificial intelligence and machine
+          learning, from early theoretical foundations to modern
+          generative and multimodal AI systems.
+        </p>
+
+        <div class="artifact-tags">
+          <span class="artifact-tag">
+            AI History
+          </span>
+
+          <span class="artifact-tag">
+            Professional Portfolio
+          </span>
+
+          <span class="artifact-tag">
+            Research and Communication
+          </span>
+
+          <span class="artifact-tag">
+            Audience-Focused Design
+          </span>
+        </div>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Introduction</h2>
+
+        <p>
+          Professional portfolios are used across many fields to
+          demonstrate experience, education, professional growth, and
+          practical skills. In the rapidly changing artificial
+          intelligence and machine learning field, a portfolio allows
+          students and professionals to show more than theoretical
+          knowledge. It provides evidence of technical understanding,
+          problem-solving ability, communication skills, and continued
+          professional development.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Description</h2>
+
+        <p>
+          This assignment required me to select a free portfolio tool
+          and add my first audience-specific artifact using work
+          completed during Workshop 1. The available options included
+          an AI and machine learning timeline, AI lab work, or a
+          professional assessment.
+        </p>
+
+        <p>
+          I selected the AI and Machine Learning History Timeline
+          because it demonstrates my understanding of how the field
+          developed from early theoretical ideas to modern generative
+          AI technologies.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Objective</h2>
+
+        <p>
+          The objective was to create a professional portfolio artifact
+          for a specific audience, communicate my unique professional
+          value, and present technical information in a way that is
+          understandable to both technical and non-technical readers.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Target Audience and Purpose</h2>
+
+        <p>
+          This artifact was designed for potential employers,
+          professional partners, and others evaluating my preparedness
+          in artificial intelligence and machine learning.
+        </p>
+
+        <p>
+          I kept each milestone brief and avoided unnecessary technical
+          language so readers with different levels of technical
+          knowledge could understand the significance of each event.
+          The timeline presents the subject as a progression from the
+          early foundations of AI, through the deep-learning revolution,
+          to the current period of generative and multimodal AI.
+        </p>
+      </section>
+
+      <div class="timeline-heading">
+        <p>Selected Milestones</p>
+
+        <h2>
+          Evolution of Artificial Intelligence
+        </h2>
+      </div>
+
+      <section class="timeline-grid">
+        <article class="timeline-card">
+          <span class="timeline-year">1950</span>
+
+          <h3>Turing Test Proposed</h3>
 
           <p>
-            This artifact presents my professional background, technical
-            experience, major accomplishments, and career direction as a
-            Full-Stack Java Developer and Microservices Engineer.
+            Alan Turing raised the question of whether machines could
+            think, helping establish the philosophical foundation for
+            artificial intelligence.
           </p>
-        </section>
+        </article>
 
-        <section class="detail-section">
-          <h2>Purpose</h2>
+        <article class="timeline-card">
+          <span class="timeline-year">1956</span>
+
+          <h3>Dartmouth Conference</h3>
 
           <p>
-            The purpose of this assignment was to communicate my professional
-            value, summarize my technical strengths, and organize evidence of
-            my academic and career development.
+            A summer workshop at Dartmouth College formally established
+            artificial intelligence as an academic field of study.
           </p>
-        </section>
+        </article>
 
-        <section class="detail-section">
-          <h2>Skills Demonstrated</h2>
+        <article class="timeline-card">
+          <span class="timeline-year">1997</span>
 
-          <ul>
-            <li>Professional communication</li>
-            <li>Career reflection</li>
-            <li>Portfolio development</li>
-            <li>Technical experience presentation</li>
-          </ul>
-        </section>
-
-        <section class="detail-section">
-          <h2>Artifact File</h2>
+          <h3>Deep Blue Defeats Kasparov</h3>
 
           <p>
-            The full assignment is available below.
+            IBM's Deep Blue defeated world chess champion Garry
+            Kasparov, becoming an important public milestone in AI.
           </p>
+        </article>
 
-          <a
-            class="document-button"
-            href="../artifacts/artifact 1 week-1.docx"
-            target="_blank"
-          >
-            Open Assignment File
-          </a>
-        </section>
-      </article>
+        <article class="timeline-card">
+          <span class="timeline-year">2012</span>
+
+          <h3>AlexNet Breakthrough</h3>
+
+          <p>
+            A deep convolutional neural network dramatically improved
+            image-recognition performance and helped launch the modern
+            deep-learning era.
+          </p>
+        </article>
+
+        <article class="timeline-card">
+          <span class="timeline-year">2016</span>
+
+          <h3>AlphaGo Defeats Lee Sedol</h3>
+
+          <p>
+            DeepMind's AlphaGo defeated a leading Go champion in a game
+            previously considered too complex for computers to master.
+          </p>
+        </article>
+
+        <article class="timeline-card">
+          <span class="timeline-year">2020</span>
+
+          <h3>GPT-3 Released</h3>
+
+          <p>
+            GPT-3 demonstrated that large language models could generate
+            highly fluent and human-like text across many tasks.
+          </p>
+        </article>
+
+        <article class="timeline-card">
+          <span class="timeline-year">2022</span>
+
+          <h3>ChatGPT Launches</h3>
+
+          <p>
+            ChatGPT introduced generative AI to a broad public audience
+            and changed how many people interact with AI systems.
+          </p>
+        </article>
+
+        <article class="timeline-card">
+          <span class="timeline-year">2023–2024</span>
+
+          <h3>Multimodal AI Expansion</h3>
+
+          <p>
+            Models capable of processing combinations of text, images,
+            audio, and video became increasingly available and widely
+            adopted.
+          </p>
+        </article>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Process</h2>
+
+        <p>
+          I first reviewed the portfolio requirements and considered the
+          intended audience for the artifact. I then selected the AI and
+          machine learning timeline because it provided a clear way to
+          demonstrate my understanding of the field's development.
+        </p>
+
+        <p>
+          I organized the milestones into a chronological sequence and
+          focused on events that were significant to the evolution of
+          artificial intelligence. I also considered which details to
+          include and which to leave out so the timeline would remain
+          focused, readable, and relevant to the intended audience.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Skills Demonstrated</h2>
+
+        <ul>
+          <li>Professional portfolio development</li>
+          <li>Audience-focused communication</li>
+          <li>Research and information organization</li>
+          <li>Technical concepts explained in accessible language</li>
+          <li>Historical analysis of artificial intelligence</li>
+          <li>Self-assessment and professional reflection</li>
+        </ul>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Reflection</h2>
+
+        <p>
+          This artifact helped me think more intentionally about what an
+          outside audience needs from a professional portfolio item. It
+          was easy to collect dates and facts, but more challenging to
+          decide what information should be included so the timeline
+          remained focused and did not become a complete history of AI.
+        </p>
+
+        <p>
+          The assignment also showed me the importance of selecting a
+          portfolio platform that can be updated as technology and my
+          professional experience continue to change. I plan to evaluate
+          future artifacts by asking how they demonstrate my professional
+          skills and what information my intended audience needs.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Tools and Resources Used</h2>
+
+        <ul>
+          <li>Professional portfolio platform</li>
+          <li>Academic and industry research sources</li>
+          <li>Microsoft Word for assignment development</li>
+          <li>GitHub and GitHub Pages for publishing</li>
+          <li>HTML and CSS for web presentation</li>
+        </ul>
+      </section>
+
+      <section class="artifact-section">
+        <h2>References</h2>
+
+        <ul class="reference-list">
+          <li>
+            Byrum, J. (2022). AI in financial portfolio management:
+            Practical considerations and use cases. In
+            <em>
+              Innovative Technology at the Interface of Finance and
+              Operations: Volume I
+            </em>
+            (pp. 249–270). Springer International Publishing.
+          </li>
+
+          <li>
+            Goldberg, D. M., Sobo, E. J., Collins, K. K., Martin,
+            A. S., Hauze, S. W., and Frazee, J. P. (2026).
+            Advancing Generative AI Literacy Through a Faculty-Focused
+            Micro-Credential.
+            <em>
+              Journal of Information Systems Education, 37
+            </em>
+            (2), 306–322.
+          </li>
+
+          <li>
+            Kumar, R., Deb, S. G., and Mukherjee, S. (2025).
+            An AI-assisted method artefact for investing decision:
+            Automatic identification of winning stocks within a value
+            portfolio.
+            <em>
+              International Journal of Productivity and Performance
+              Management, 74
+            </em>
+            (7), 2558–2583.
+          </li>
+        </ul>
+      </section>
     </div>
   </main>
 </body>
