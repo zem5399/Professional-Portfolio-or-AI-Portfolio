@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Prompt Engineering Exercise | Rahmat Zada
+  </title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    body {
+      margin: 0;
+      color: #ffffff;
+      background: #070c1c;
+    }
+
+    .artifact-page {
+      padding: 42px 0 90px;
+    }
+
+    .artifact-container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 12px 20px;
+      border: 1px solid #344158;
+      border-radius: 999px;
+      color: #ffffff;
+      background: #1a2538;
+      font-weight: 800;
+      transition: 0.25s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      border-color: #5b9df9;
+    }
+
+    .artifact-hero {
+      padding: 42px;
+      border: 1px solid #344158;
+      border-radius: 26px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(59, 151, 243, 0.16),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at top left,
+          rgba(139, 92, 246, 0.14),
+          transparent 34%
+        ),
+        #111a2b;
+    }
+
+    .artifact-label {
+      margin: 0 0 14px;
+      color: #9b6cff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .artifact-hero h1 {
+      max-width: 950px;
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    .artifact-summary {
+      max-width: 900px;
+      margin: 24px 0 0;
+      color: #c9d4e5;
+      font-size: 1.12rem;
+      line-height: 1.8;
+    }
+
+    .artifact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .artifact-tag {
+      padding: 8px 13px;
+      border: 1px solid #4b4c9d;
+      border-radius: 999px;
+      color: #d8dcff;
+      background: rgba(80, 80, 170, 0.18);
+      font-size: 0.86rem;
+      font-weight: 750;
+    }
+
+    .pdf-preview {
+      margin-top: 24px;
+      overflow: hidden;
+      border: 1px solid #344158;
+      border-radius: 22px;
+      background: #111a2b;
+    }
+
+    .pdf-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: #172235;
+    }
+
+    .pdf-preview-label {
+      margin: 0;
+      color: #66b9ff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .pdf-preview-title {
+      margin: 5px 0 0;
+      color: #ffffff;
+      font-size: 1.2rem;
+    }
+
+    .pdf-button {
+      display: inline-flex;
+      padding: 11px 18px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #8b5cf6, #3b97f3);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pdf-frame {
+      display: block;
+      width: 100%;
+      height: 760px;
+      border: 0;
+      background: #ffffff;
+    }
+
+    .artifact-section {
+      margin-top: 24px;
+      padding: 28px;
+      border: 1px solid #2d3a50;
+      border-radius: 18px;
+      background: #111a2b;
+    }
+
+    .artifact-section h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+      font-size: 1.35rem;
+    }
+
+    .artifact-section p,
+    .artifact-section li {
+      color: #c5d0e0;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .artifact-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .artifact-section ul {
+      margin-bottom: 0;
+      padding-left: 23px;
+    }
+
+    .cycle-heading {
+      margin: 44px 0 18px;
+    }
+
+    .cycle-heading p {
+      margin: 0 0 10px;
+      color: #9b6cff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .cycle-heading h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cycle-card {
+      padding: 24px;
+      border: 1px solid #344158;
+      border-radius: 18px;
+      background: #172235;
+    }
+
+    .cycle-number {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #62b8ff;
+      font-weight: 900;
+    }
+
+    .cycle-card h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: 1.18rem;
+    }
+
+    .cycle-card p {
+      margin: 0;
+      color: #bcc8da;
+      line-height: 1.7;
+    }
+
+    .reference-list li {
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .cycle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .artifact-hero {
+        padding: 28px;
+      }
+
+      .artifact-section {
+        padding: 22px;
+      }
+
+      .pdf-preview-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .pdf-frame {
+        height: 600px;
+      }
+
+      .cycle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .artifact-hero h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <a class="name-logo" href="../index.html">
+        RAHMAT ZADA
+      </a>
+
+      <nav class="navigation">
+        <a href="../index.html">Home</a>
+
+        <a href="../index.html#artifacts">
+          Artifacts
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/rahmat-zada"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="artifact-page">
+    <div class="artifact-container">
+      <a
+        class="back-button"
+        href="../index.html#artifacts"
+      >
+        ← Back to Artifacts
+      </a>
+
+      <section class="artifact-hero">
+        <p class="artifact-label">
+          Workshop 3 — Artifact 3
+        </p>
+
+        <h1>
+          Prompt Engineering Exercise
+        </h1>
+
+        <p class="artifact-summary">
+          A practical generative AI exercise demonstrating how prompts
+          can be drafted, tested, evaluated, and refined to produce more
+          accurate, useful, and responsible results.
+        </p>
+
+        <div class="artifact-tags">
+          <span class="artifact-tag">
+            Prompt Engineering
+          </span>
+
+          <span class="artifact-tag">
+            Generative AI
+          </span>
+
+          <span class="artifact-tag">
+            Output Evaluation
+          </span>
+
+          <span class="artifact-tag">
+            Responsible AI
+          </span>
+
+          <span class="artifact-tag">
+            Iterative Improvement
+          </span>
+        </div>
+      </section>
+
+      <section class="pdf-preview">
+        <div class="pdf-preview-header">
+          <div>
+            <p class="pdf-preview-label">
+              PDF Preview
+            </p>
+
+            <h2 class="pdf-preview-title">
+              Professional Portfolio — Artifact 3
+            </h2>
+          </div>
+
+          <a
+            class="pdf-button"
+            href="../artifacts/workshop%203%20-%20professional%20portfolio%20artifact%203.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Full PDF
+          </a>
+        </div>
+
+        <iframe
+          class="pdf-frame"
+          src="../artifacts/workshop%203%20-%20professional%20portfolio%20artifact%203.pdf#toolbar=0"
+          title="Workshop 3 Prompt Engineering Exercise"
+        ></iframe>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Introduction</h2>
+
+        <p>
+          This artifact presents a practical prompt engineering
+          exercise in which I created, tested, evaluated, and improved
+          prompts for a generative AI tool.
+        </p>
+
+        <p>
+          Together with my AI history timeline and professional skills
+          self-assessment, this artifact shows how my knowledge and
+          self-awareness can be applied to a real artificial
+          intelligence task.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Description</h2>
+
+        <p>
+          The exercise documents the original prompt, the AI-generated
+          response, the weaknesses identified in that response, and the
+          revised instructions used to improve the final output.
+        </p>
+
+        <p>
+          I selected this artifact because it demonstrates practical
+          prompt engineering rather than simply describing my skills.
+          It gives readers an opportunity to see how I analyze an AI
+          response and improve it through structured revisions.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Objective</h2>
+
+        <p>
+          The objective was to use a generative AI tool to complete a
+          defined task, evaluate the quality of the output, identify
+          unclear or missing instructions, and revise the prompt until
+          the result consistently matched the task requirements.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Target Audience and Purpose</h2>
+
+        <p>
+          This artifact is intended for prospective employers,
+          technical team leaders, instructors, and professional
+          partners who want to see practical evidence of my ability to
+          work with generative AI tools.
+        </p>
+
+        <p>
+          Instead of presenting only the completed output, the artifact
+          preserves the earlier prompts and revisions so the audience
+          can evaluate my reasoning and improvement process.
+        </p>
+      </section>
+
+      <div class="cycle-heading">
+        <p>Iterative Workflow</p>
+
+        <h2>
+          Prompt Engineering Cycle
+        </h2>
+      </div>
+
+      <section class="cycle-grid">
+        <article class="cycle-card">
+          <span class="cycle-number">01</span>
+
+          <h3>Draft Prompt</h3>
+
+          <p>
+            Begin with an initial instruction that describes the task
+            and desired result.
+          </p>
+        </article>
+
+        <article class="cycle-card">
+          <span class="cycle-number">02</span>
+
+          <h3>Generate Output</h3>
+
+          <p>
+            Submit the prompt to the generative AI system and review
+            the response it produces.
+          </p>
+        </article>
+
+        <article class="cycle-card">
+          <span class="cycle-number">03</span>
+
+          <h3>Evaluate Against the Task</h3>
+
+          <p>
+            Compare the output with the original requirements and
+            identify missing, unclear, biased, or inaccurate elements.
+          </p>
+        </article>
+
+        <article class="cycle-card">
+          <span class="cycle-number">04</span>
+
+          <h3>Revise Prompt</h3>
+
+          <p>
+            Add clearer requirements, relevant context, constraints,
+            and examples before testing the prompt again.
+          </p>
+        </article>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Process</h2>
+
+        <p>
+          I began with a simple prompt and reviewed the response
+          produced by the generative AI tool. I then identified areas
+          where the instructions were vague or where the output did not
+          fully match the task.
+        </p>
+
+        <p>
+          I rewrote the prompt to include more detailed requirements,
+          additional background information, and relevant examples.
+          This process was repeated until the output consistently met
+          the intended purpose.
+        </p>
+
+        <p>
+          The most challenging part was resisting the temptation to
+          accept the first workable response. The real learning came
+          from identifying why an output was not good enough and
+          determining which instruction needed improvement.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Skills Demonstrated</h2>
+
+        <ul>
+          <li>Prompt engineering</li>
+          <li>Generative AI tool usage</li>
+          <li>AI output evaluation</li>
+          <li>Iterative problem-solving</li>
+          <li>Task-based testing</li>
+          <li>Critical analysis</li>
+          <li>AI ethics and responsible use</li>
+          <li>Bias and validity awareness</li>
+        </ul>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Responsible AI Considerations</h2>
+
+        <p>
+          The generated responses were not accepted automatically.
+          They were reviewed for accuracy, validity, relevance, and
+          possible bias.
+        </p>
+
+        <p>
+          This reflects the importance of using AI as a support tool
+          while maintaining human judgment, accountability, and
+          professional responsibility.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Reflection</h2>
+
+        <p>
+          This artifact helped me understand prompt writing as an
+          iterative process rather than a skill based only on intuition.
+          Creating a prompt and accepting a mediocre response is easy;
+          identifying the missing instruction and improving the output
+          requires deeper analysis.
+        </p>
+
+        <p>
+          The exercise also reinforced the importance of evidence. Just
+          as my self-assessment required examples to support each
+          rating, this artifact demonstrates effectiveness through the
+          visible progression from an initial prompt to an improved
+          result.
+        </p>
+
+        <p>
+          In future AI work, I will continue asking not only what I
+          accomplished, but also what evidence another person could use
+          to judge whether the result was effective.
+        </p>
+      </section>
+
+      <section class="artifact-section">
+        <h2>Tools and Technologies Used</h2>
+
+        <ul>
+          <li>Generative AI platform</li>
+          <li>Prompt drafting and revision</li>
+          <li>Task-based output evaluation</li>
+          <li>Microsoft Word</li>
+          <li>GitHub and GitHub Pages</li>
+          <li>HTML and CSS</li>
+        </ul>
+      </section>
+
+      <section class="artifact-section">
+        <h2>References</h2>
+
+        <ul class="reference-list">
+          <li>
+            Byrum, J. (2022). AI in financial portfolio management:
+            Practical considerations and use cases. In
+            <em>
+              Innovative Technology at the Interface of Finance and
+              Operations: Volume I
+            </em>
+            (pp. 249–270). Springer International Publishing.
+          </li>
+
+          <li>
+            Goldberg, D. M., Sobo, E. J., Collins, K. K., Martin,
+            A. S., Hauze, S. W., and Frazee, J. P. (2026).
+            Advancing Generative AI Literacy Through a Faculty-Focused
+            Micro-Credential.
+            <em>
+              Journal of Information Systems Education, 37
+            </em>
+            (2), 306–322.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
