@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Portfolio Artifact 4: Model Bias and Fairness Evaluation by Rahmat Zada."
+    >
+
+    <title>
+        Artifact 4 | Model Bias and Fairness
+    </title>
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #38bdf8;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --border: #dbe3ec;
+            --white: #ffffff;
+            --success: #0f766e;
+            --shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            background: var(--light);
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .top-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 23, 42, 0.98),
+                    rgba(30, 64, 175, 0.92)
+                );
+            color: var(--white);
+            padding: 90px 20px;
+        }
+
+        .hero-content {
+            width: min(1000px, 92%);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 820px;
+            margin: 0 auto 30px;
+            color: #dbeafe;
+            font-size: 1.12rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition:
+                transform 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .button-primary:hover {
+            background: #7dd3fc;
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        main {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+            padding: 65px 0 80px;
+        }
+
+        .section {
+            margin-bottom: 55px;
+        }
+
+        .section-heading {
+            margin-bottom: 22px;
+        }
+
+        .section-heading span {
+            color: var(--secondary);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin-top: 7px;
+            color: var(--primary);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            max-width: 760px;
+            margin-top: 12px;
+            color: var(--muted);
+        }
+
+        .pdf-wrapper {
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .pdf-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 22px;
+            background: #eff6ff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pdf-header h3 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .pdf-frame {
+            display: block;
+            width: 100%;
+            height: 760px;
+            border: 0;
+            background: #e2e8f0;
+        }
+
+        .content-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .content-card p + p {
+            margin-top: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .info-card p {
+            color: #475569;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .skill {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .skill h3 {
+            color: var(--primary);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            border-left: 5px solid var(--success);
+            background: #f0fdfa;
+        }
+
+        .process-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .process-item {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 18px;
+            align-items: start;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .process-number {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .process-item h3 {
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .process-item p {
+            color: var(--muted);
+        }
+
+        .reference-list {
+            padding-left: 22px;
+        }
+
+        .reference-list li {
+            margin-bottom: 16px;
+        }
+
+        .reference-list a {
+            color: var(--secondary);
+            word-break: break-word;
+        }
+
+        .closing {
+            text-align: center;
+            padding: 50px 30px;
+            color: var(--white);
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e40af
+                );
+            border-radius: 16px;
+        }
+
+        .closing h2 {
+            margin-bottom: 12px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+        }
+
+        .closing p {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            color: #dbeafe;
+        }
+
+        footer {
+            background: var(--primary);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 850px) {
+            .grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pdf-frame {
+                height: 620px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                min-height: 64px;
+            }
+
+            .brand {
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 70px 18px;
+            }
+
+            main {
+                padding-top: 45px;
+            }
+
+            .content-card,
+            .info-card {
+                padding: 24px;
+            }
+
+            .pdf-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .pdf-frame {
+                height: 500px;
+            }
+
+            .process-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <div class="nav-container">
+
+            <a
+                class="brand"
+                href="../index.html"
+            >
+                Rahmat Zada | AI/ML Portfolio
+            </a>
+
+            <a
+                class="back-link"
+                href="../index.html#artifacts"
+            >
+                ← Back to Portfolio
+            </a>
+
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                Portfolio Artifact 4
+            </span>
+
+            <h1>
+                Model Bias and Fairness Evaluation
+            </h1>
+
+            <p>
+                An ethical AI portfolio artifact focused on
+                identifying model bias, evaluating fairness across
+                groups, and communicating findings to both technical
+                and non-technical audiences.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    class="button button-primary"
+                    href="#preview"
+                >
+                    View Project
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="../artifacts/artifact-4-model-bias.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Open Full PDF
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        <section
+            class="section"
+            id="preview"
+        >
+            <div class="section-heading">
+                <span>Project Document</span>
+
+                <h2>
+                    Artifact Preview
+                </h2>
+
+                <p>
+                    Review the complete reflection and supporting
+                    discussion directly within the portfolio.
+                </p>
+            </div>
+
+            <div class="pdf-wrapper">
+
+                <div class="pdf-header">
+                    <h3>
+                        Artifact 4: Model Bias and Fairness
+                    </h3>
+
+                    <a
+                        class="button button-primary"
+                        href="../artifacts/artifact-4-model-bias.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open PDF
+                    </a>
+                </div>
+
+                <iframe
+                    class="pdf-frame"
+                    src="../artifacts/artifact-4-model-bias.pdf#toolbar=0&navpanes=0"
+                    title="Artifact 4 Model Bias and Fairness PDF"
+                >
+                    Your browser does not support embedded PDFs.
+                    Please open the PDF using the button above.
+                </iframe>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Overview</span>
+
+                <h2>
+                    Introduction
+                </h2>
+            </div>
+
+            <div class="content-card">
+
+                <p>
+                    This artifact examines model bias and fairness
+                    within a classification system trained on
+                    real-world data. It expands my portfolio beyond
+                    model development and data preparation by
+                    demonstrating ethical evaluation and responsible
+                    AI thinking.
+                </p>
+
+                <p>
+                    The project emphasizes that a model should not be
+                    evaluated only by its overall performance.
+                    Practitioners must also determine whether the model
+                    behaves consistently across different groups and
+                    whether its predictions could create unfair
+                    outcomes.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Professional Value</span>
+
+                <h2>
+                    Why This Artifact Matters
+                </h2>
+            </div>
+
+            <div class="grid">
+
+                <article class="info-card">
+                    <h3>
+                        Ethical AI Evaluation
+                    </h3>
+
+                    <p>
+                        The artifact demonstrates my ability to think
+                        beyond accuracy and examine whether a
+                        classification model produces fair and valid
+                        results across different subgroups.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3>
+                        Real-World Relevance
+                    </h3>
+
+                    <p>
+                        Fairness audits are especially important when
+                        models influence sensitive decisions involving
+                        lending, employment, healthcare, or access to
+                        important services.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3>
+                        Audience Awareness
+                    </h3>
+
+                    <p>
+                        The project was refined so recruiters can
+                        quickly understand its importance while
+                        technical reviewers can examine the evaluation
+                        approach in greater detail.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3>
+                        Professional Communication
+                    </h3>
+
+                    <p>
+                        The language and presentation were adjusted to
+                        be more business-focused, readable, and
+                        appropriate for a professional portfolio.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Approach</span>
+
+                <h2>
+                    Evaluation Process
+                </h2>
+            </div>
+
+            <div class="process-list">
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        1
+                    </div>
+
+                    <div>
+                        <h3>
+                            Examine the Classification Model
+                        </h3>
+
+                        <p>
+                            Review the model's predictions and consider
+                            whether overall performance accurately
+                            represents its behavior across different
+                            populations.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        2
+                    </div>
+
+                    <div>
+                        <h3>
+                            Evaluate Group Differences
+                        </h3>
+
+                        <p>
+                            Compare results across subgroups to identify
+                            disparities that may not appear in a single
+                            overall performance score.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        3
+                    </div>
+
+                    <div>
+                        <h3>
+                            Interpret Fairness Findings
+                        </h3>
+
+                        <p>
+                            Consider whether observed differences could
+                            create unfair or harmful outcomes in
+                            practical decision-making settings.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        4
+                    </div>
+
+                    <div>
+                        <h3>
+                            Communicate Results Clearly
+                        </h3>
+
+                        <p>
+                            Present the most important findings in a
+                            format that is useful to hiring managers,
+                            business stakeholders, technical peers, and
+                            interviewers.
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Capabilities</span>
+
+                <h2>
+                    Skills Demonstrated
+                </h2>
+            </div>
+
+            <div class="skills-grid">
+
+                <article class="skill">
+                    <h3>
+                        Bias Detection
+                    </h3>
+
+                    <p>
+                        Identifying potential differences in model
+                        behavior across groups.
+                    </p>
+                </article>
+
+                <article class="skill">
+                    <h3>
+                        Fairness Evaluation
+                    </h3>
+
+                    <p>
+                        Assessing whether model outcomes are consistent
+                        and responsible.
+                    </p>
+                </article>
+
+                <article class="skill">
+                    <h3>
+                        Classification Analysis
+                    </h3>
+
+                    <p>
+                        Reviewing the validity and performance of a
+                        classification system.
+                    </p>
+                </article>
+
+                <article class="skill">
+                    <h3>
+                        Responsible AI
+                    </h3>
+
+                    <p>
+                        Considering ethical implications alongside
+                        technical performance.
+                    </p>
+                </article>
+
+                <article class="skill">
+                    <h3>
+                        Data Interpretation
+                    </h3>
+
+                    <p>
+                        Explaining what model results mean in practical
+                        and professional contexts.
+                    </p>
+                </article>
+
+                <article class="skill">
+                    <h3>
+                        Technical Communication
+                    </h3>
+
+                    <p>
+                        Adapting information for both technical and
+                        non-technical audiences.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Reflection</span>
+
+                <h2>
+                    What I Learned
+                </h2>
+            </div>
+
+            <div class="content-card highlight">
+
+                <p>
+                    This artifact taught me that strong academic work
+                    does not automatically become strong professional
+                    portfolio content. A professional artifact must be
+                    designed for its intended audience.
+                </p>
+
+                <p>
+                    Recruiters often need to understand the value and
+                    impact quickly, while technical reviewers care more
+                    about accuracy, completeness, methods, and
+                    supporting evidence. I therefore had to balance
+                    simplicity with technical detail.
+                </p>
+
+                <p>
+                    By adding ethical evaluation to my portfolio, this
+                    artifact strengthens the overall representation of
+                    my AI and machine learning abilities. It connects
+                    model development, data processing, communication,
+                    and responsible AI assessment.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <span>Research</span>
+
+                <h2>
+                    References
+                </h2>
+            </div>
+
+            <div class="content-card">
+
+                <ol class="reference-list">
+
+                    <li>
+                        Alelyani, S. (2021).
+                        <em>
+                            Detection and evaluation of machine
+                            learning bias.
+                        </em>
+                        Applied Sciences, 11(14), 6271.
+                        <br>
+
+                        <a
+                            href="https://www.mdpi.com/2076-3417/11/14/6271"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View source
+                        </a>
+                    </li>
+
+                    <li>
+                        Wiśniewski, J., &amp; Biecek, P. (2022).
+                        <em>
+                            fairmodels: A flexible tool for bias
+                            detection, visualization, and mitigation
+                            in binary classification models.
+                        </em>
+                        R Journal, 14(1).
+                    </li>
+
+                </ol>
+
+            </div>
+        </section>
+
+        <section class="closing">
+
+            <h2>
+                Responsible AI Requires More Than Accuracy
+            </h2>
+
+            <p>
+                This artifact demonstrates my commitment to building
+                and evaluating AI systems that are technically sound,
+                professionally communicated, and ethically responsible.
+            </p>
+
+            <a
+                class="button button-primary"
+                href="../index.html#artifacts"
+            >
+                Return to All Artifacts
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 Rahmat Zada. AI/ML Professional Portfolio.
+        </p>
+    </footer>
+
+</body>
+</html>
