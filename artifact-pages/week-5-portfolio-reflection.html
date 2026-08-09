@@ -1,15 +1,1189 @@
-<div class="artifact-card">
-    <span class="artifact-tag">PORTFOLIO REFLECTION</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-    <h3>Professional AI/ML Portfolio Reflection</h3>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <p>
-        A final reflection highlighting my growth in Artificial Intelligence
-        and Machine Learning through portfolio development, peer feedback,
-        technical refinement, and responsible AI practices.
-    </p>
+    <meta
+        name="description"
+        content="Portfolio Artifact 5: Professional AI/ML Portfolio Reflection by Rahmat Zada."
+    >
 
-    <a href="artifact-pages/week-5-portfolio-reflection.html">
-        View Full Details →
-    </a>
-</div>
+    <title>
+        Artifact 5 | Professional AI/ML Portfolio Reflection
+    </title>
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #38bdf8;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --border: #dbe3ec;
+            --white: #ffffff;
+            --success: #0f766e;
+            --shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light);
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .top-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15, 23, 42, 0.98),
+                    rgba(30, 64, 175, 0.92)
+                );
+            color: var(--white);
+            padding: 90px 20px;
+        }
+
+        .hero-content {
+            width: min(1000px, 92%);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 820px;
+            margin: 0 auto 30px;
+            color: #dbeafe;
+            font-size: 1.12rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition:
+                transform 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .button-primary:hover {
+            background: #7dd3fc;
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        main {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+            padding: 65px 0 80px;
+        }
+
+        .section {
+            margin-bottom: 55px;
+        }
+
+        .section-heading {
+            margin-bottom: 22px;
+        }
+
+        .section-heading span {
+            color: var(--secondary);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin-top: 7px;
+            color: var(--primary);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            max-width: 760px;
+            margin-top: 12px;
+            color: var(--muted);
+        }
+
+        .pdf-wrapper {
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .pdf-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 22px;
+            background: #eff6ff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pdf-header h3 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .pdf-frame {
+            display: block;
+            width: 100%;
+            height: 760px;
+            border: 0;
+            background: #e2e8f0;
+        }
+
+        .content-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .content-card p + p {
+            margin-top: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .info-card p {
+            color: #475569;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .skill {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        .skill h3 {
+            color: var(--primary);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            border-left: 5px solid var(--success);
+            background: #f0fdfa;
+        }
+
+        .process-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .process-item {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 18px;
+            align-items: start;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .process-number {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .process-item h3 {
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .process-item p {
+            color: var(--muted);
+        }
+
+        .reference-list {
+            padding-left: 22px;
+        }
+
+        .reference-list li {
+            margin-bottom: 16px;
+        }
+
+        .closing {
+            text-align: center;
+            padding: 50px 30px;
+            color: var(--white);
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e40af
+                );
+            border-radius: 16px;
+        }
+
+        .closing h2 {
+            margin-bottom: 12px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+        }
+
+        .closing p {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            color: #dbeafe;
+        }
+
+        footer {
+            background: var(--primary);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 850px) {
+            .grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pdf-frame {
+                height: 620px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                min-height: 64px;
+            }
+
+            .brand {
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 70px 18px;
+            }
+
+            main {
+                padding-top: 45px;
+            }
+
+            .content-card,
+            .info-card {
+                padding: 24px;
+            }
+
+            .pdf-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .pdf-frame {
+                height: 500px;
+            }
+
+            .process-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <div class="nav-container">
+
+            <a
+                class="brand"
+                href="../index.html"
+            >
+                Rahmat Zada | AI/ML Portfolio
+            </a>
+
+            <a
+                class="back-link"
+                href="../index.html#artifacts"
+            >
+                ← Back to Portfolio
+            </a>
+
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                Portfolio Artifact 5
+            </span>
+
+            <h1>
+                Professional AI/ML Portfolio Reflection
+            </h1>
+
+            <p>
+                A final portfolio reflection highlighting my growth
+                in artificial intelligence and machine learning
+                through portfolio development, peer feedback,
+                technical refinement, responsible AI practices,
+                and professional presentation.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    class="button button-primary"
+                    href="#preview"
+                >
+                    View Project
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="../artifacts/Assignment%205.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Open Full PDF
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <main>
+
+        <!-- PDF PREVIEW -->
+
+        <section
+            class="section"
+            id="preview"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    Project Document
+                </span>
+
+                <h2>
+                    Artifact Preview
+                </h2>
+
+                <p>
+                    Review my complete Professional AI/ML Portfolio
+                    Reflection directly within the portfolio.
+                </p>
+
+            </div>
+
+
+            <div class="pdf-wrapper">
+
+                <div class="pdf-header">
+
+                    <h3>
+                        Artifact 5: Professional AI/ML Portfolio Reflection
+                    </h3>
+
+                    <a
+                        class="button button-primary"
+                        href="../artifacts/Assignment%205.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open PDF
+                    </a>
+
+                </div>
+
+
+                <iframe
+                    class="pdf-frame"
+                    src="../artifacts/Assignment%205.pdf#toolbar=0&navpanes=0"
+                    title="Assignment 5 Professional AI ML Portfolio Reflection PDF"
+                >
+                    Your browser does not support embedded PDFs.
+                    Please open the PDF using the button above.
+                </iframe>
+
+            </div>
+
+        </section>
+
+
+        <!-- OVERVIEW -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Overview
+                </span>
+
+                <h2>
+                    Introduction
+                </h2>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <p>
+                    This artifact represents the final reflection
+                    on my professional Artificial Intelligence and
+                    Machine Learning portfolio. Throughout the
+                    course, I developed a collection of artifacts
+                    that demonstrate my knowledge, abilities, and
+                    progress in AI and machine learning.
+                </p>
+
+                <p>
+                    I selected this final artifact because it
+                    demonstrates how I can move beyond theoretical
+                    AI and ML concepts and think about their
+                    practical application in real-world technology
+                    environments.
+                </p>
+
+                <p>
+                    I also focused on making my work appropriate
+                    for a professional portfolio by restructuring
+                    information, improving explanations, and making
+                    the purpose and value of each artifact easier
+                    to understand.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFESSIONAL VALUE -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Professional Value
+                </span>
+
+                <h2>
+                    Why This Artifact Matters
+                </h2>
+
+            </div>
+
+
+            <div class="grid">
+
+                <article class="info-card">
+
+                    <h3>
+                        Portfolio Development
+                    </h3>
+
+                    <p>
+                        This artifact demonstrates my ability to
+                        transform academic AI and machine learning
+                        assignments into professionally presented
+                        portfolio work.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <h3>
+                        Technical Communication
+                    </h3>
+
+                    <p>
+                        A professional AI/ML portfolio should not
+                        only demonstrate technical skills. It
+                        should also communicate complex technical
+                        concepts clearly to different audiences.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <h3>
+                        Continuous Improvement
+                    </h3>
+
+                    <p>
+                        Reviewing previous artifacts allowed me to
+                        identify weaknesses, improve descriptions,
+                        and create greater consistency across my
+                        portfolio.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <h3>
+                        Responsible AI
+                    </h3>
+
+                    <p>
+                        The reflection strengthened my understanding
+                        that artificial intelligence must be used
+                        ethically, effectively, and responsibly in
+                        professional environments.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROCESS -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Approach
+                </span>
+
+                <h2>
+                    Portfolio Refinement Process
+                </h2>
+
+            </div>
+
+
+            <div class="process-list">
+
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Review Previous Artifacts
+                        </h3>
+
+                        <p>
+                            I reviewed all five portfolio artifacts
+                            together to evaluate their technical
+                            quality, presentation, organization,
+                            and consistency.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Analyze Peer Feedback
+                        </h3>
+
+                        <p>
+                            I reviewed feedback provided by
+                            colleagues during Workshop Five and
+                            identified suggestions that could
+                            strengthen my portfolio.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Improve Technical Explanations
+                        </h3>
+
+                        <p>
+                            I clarified descriptions, strengthened
+                            explanations, and provided additional
+                            context where necessary so readers
+                            could understand the technical ideas.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="process-item">
+
+                    <div class="process-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Create Professional Consistency
+                        </h3>
+
+                        <p>
+                            I refined the structure and presentation
+                            of the artifacts so that the overall
+                            portfolio feels more consistent,
+                            professional, and easier to evaluate.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Capabilities
+                </span>
+
+                <h2>
+                    Skills Demonstrated
+                </h2>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+
+                <article class="skill">
+
+                    <h3>
+                        Artificial Intelligence
+                    </h3>
+
+                    <p>
+                        Applying AI concepts to practical
+                        technology and business environments.
+                    </p>
+
+                </article>
+
+
+                <article class="skill">
+
+                    <h3>
+                        Machine Learning
+                    </h3>
+
+                    <p>
+                        Developing stronger understanding of data,
+                        ML concepts, evaluation, and practical
+                        applications.
+                    </p>
+
+                </article>
+
+
+                <article class="skill">
+
+                    <h3>
+                        Data Analysis
+                    </h3>
+
+                    <p>
+                        Understanding data, analyzing information,
+                        and evaluating technical findings.
+                    </p>
+
+                </article>
+
+
+                <article class="skill">
+
+                    <h3>
+                        Technical Communication
+                    </h3>
+
+                    <p>
+                        Explaining complex AI and ML ideas clearly
+                        to technical and non-technical audiences.
+                    </p>
+
+                </article>
+
+
+                <article class="skill">
+
+                    <h3>
+                        Problem Solving
+                    </h3>
+
+                    <p>
+                        Using analytical thinking to evaluate
+                        technical problems and improve solutions.
+                    </p>
+
+                </article>
+
+
+                <article class="skill">
+
+                    <h3>
+                        Responsible AI
+                    </h3>
+
+                    <p>
+                        Considering ethical and responsible use of
+                        artificial intelligence alongside
+                        technical performance.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PEER FEEDBACK -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Collaboration
+                </span>
+
+                <h2>
+                    Incorporating Peer Feedback
+                </h2>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <p>
+                    Feedback from my colleagues during Workshop
+                    Five played an important role in improving my
+                    portfolio.
+                </p>
+
+                <p>
+                    Their suggestions helped me identify areas
+                    where my technical explanations,
+                    organization, presentation, and overall
+                    clarity could be strengthened.
+                </p>
+
+                <p>
+                    I incorporated relevant feedback by improving
+                    descriptions, clarifying areas that needed
+                    additional explanation, revising previous work,
+                    and making the artifacts more consistent.
+                </p>
+
+                <p>
+                    This process demonstrated the importance of
+                    constructive criticism because another
+                    person's perspective can reveal opportunities
+                    for improvement that may not be obvious when
+                    reviewing our own work.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- REFLECTION -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Reflection
+                </span>
+
+                <h2>
+                    What I Learned
+                </h2>
+
+            </div>
+
+
+            <div class="content-card highlight">
+
+                <p>
+                    Reviewing all five artifacts together allowed
+                    me to recognize my development in artificial
+                    intelligence and machine learning throughout
+                    the course.
+                </p>
+
+                <p>
+                    The earlier projects established important
+                    foundations, while the later assignments gave
+                    me greater confidence in applying AI and ML
+                    concepts to practical situations.
+                </p>
+
+                <p>
+                    Through the portfolio development process, I
+                    strengthened my ability to understand data,
+                    analyze information, evaluate findings, solve
+                    problems, and communicate technical concepts
+                    professionally.
+                </p>
+
+                <p>
+                    One of the most important lessons was that a
+                    strong professional portfolio should
+                    demonstrate more than technical knowledge. It
+                    should also demonstrate communication,
+                    reflection, responsible decision-making, and
+                    continuous improvement.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAREER VALUE -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Career Development
+                </span>
+
+                <h2>
+                    Connecting AI/ML Learning to My Professional Work
+                </h2>
+
+            </div>
+
+
+            <div class="grid">
+
+                <article class="info-card">
+
+                    <h3>
+                        Technical Growth
+                    </h3>
+
+                    <p>
+                        The portfolio demonstrates continued
+                        development in AI, machine learning,
+                        analytics, technical evaluation, and
+                        responsible technology.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <h3>
+                        Business Application
+                    </h3>
+
+                    <p>
+                        These skills can support the integration of
+                        AI and ML into real-world software systems
+                        and business environments.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- REFERENCES -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span>
+                    Research
+                </span>
+
+                <h2>
+                    References
+                </h2>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <ol class="reference-list">
+
+                    <li>
+                        Barrett, A. M., Hendrycks, D.,
+                        Newman, J., &amp; Nonnecke, B. (2022).
+                        <em>
+                            Actionable guidance for
+                            high-consequence AI risk management:
+                            Towards standards addressing AI
+                            catastrophic risks.
+                        </em>
+                        arXiv.
+                    </li>
+
+
+                    <li>
+                        Lee, J., Su, H., Macchi, M.,
+                        Polenghi, A., Wu, W., Zhao, Z.,
+                        Huang, G. Q., Allgood, K., Jain, D.,
+                        &amp; others. (2026).
+                        <em>
+                            2026 roadmap on artificial
+                            intelligence and machine learning
+                            for smart manufacturing.
+                        </em>
+                        arXiv.
+                    </li>
+
+
+                    <li>
+                        Tabassi, E. (2023).
+                        <em>
+                            Artificial Intelligence Risk
+                            Management Framework (AI RMF 1.0).
+                        </em>
+                        National Institute of Standards and
+                        Technology.
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLOSING -->
+
+        <section class="closing">
+
+            <h2>
+                Continuous Learning Strengthens AI/ML Practice
+            </h2>
+
+            <p>
+                This final artifact represents my growth in
+                artificial intelligence, machine learning,
+                analytical thinking, technical communication,
+                professional presentation, and responsible AI.
+            </p>
+
+            <a
+                class="button button-primary"
+                href="../index.html#artifacts"
+            >
+                Return to All Artifacts
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Rahmat Zada. AI/ML Professional Portfolio.
+        </p>
+
+    </footer>
+
+</body>
+</html>
